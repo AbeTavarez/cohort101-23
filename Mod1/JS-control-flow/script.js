@@ -125,30 +125,28 @@ switch (x) {
     console.log("Input is incorrect!");
 }
 
-
 let z = 5;
 let y = 4;
 
 let operand = "*";
 
 switch (operand) {
-   case "+":
-       console.log(z + y);
-       break;
-   case "-":
-       console.log(z - y);
-       break;
-   case "*":
-       console.log(z * y);
-       break
-   case "/":
-       console.log(z / y);
-       break;
-   default:
-       console.log("Invalid Operand")
-       break;
+  case "+":
+    console.log(z + y);
+    break;
+  case "-":
+    console.log(z - y);
+    break;
+  case "*":
+    console.log(z * y);
+    break;
+  case "/":
+    console.log(z / y);
+    break;
+  default:
+    console.log("Invalid Operand");
+    break;
 }
-
 
 // ======== ternary
 
@@ -158,4 +156,60 @@ user ? console.log(`Welcome ${user}`) : console.log("Don't know who you're!");
 
 let a = 4;
 // (condition) ?  'expression' : 'expression'
-(a % 2 === 0) ? console.log(`${a} is even.`) : console.log(`${a} is odd.`);
+a % 2 === 0 ? console.log(`${a} is even.`) : console.log(`${a} is odd.`);
+
+// ==== ERRORS ================
+
+// let val = 10;
+
+// if (val < 0) {
+// 	console.log("Negative!");
+
+// } else {
+// 	throw "Error - I don't know what I'm doing.";
+// }
+
+// console.log("Does this log?");
+
+// ======= try & catch
+// let val2 = 10;
+
+// try {
+
+// 	if (val2 < 0) {
+// 		console.log("Negative!");
+// 	} else {
+// 		throw "Error - I don't know what I'm doing.";
+// 	}
+
+// } catch (error) {
+// 	console.log(error);
+// }
+
+// console.log("Does this log?");
+
+let val3 = 10;
+let isEven;
+
+try {
+  if (val3 > 0) {
+    isEven = val3 % 2 == 0 ? false : true;
+  } else if (val3 <= 0) {
+    throw "Error - Value of 0 or below.";
+  }
+
+  console.log(isEven);
+} catch (err) {
+  console.log(err);
+} finally {
+  console.log(val3);
+}
+
+
+
+let n1 = 5;
+let n2 = 10;
+
+let total = n1 + n2;
+
+console.log(total);
