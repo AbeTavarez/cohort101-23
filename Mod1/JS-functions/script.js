@@ -145,3 +145,28 @@ const userInfo = (name, ...details) => {
 
 const u1 = userInfo('john', 23, 'NYC');
 console.log(u1);
+
+
+
+// default parameters
+
+
+const myBike = {};
+
+
+function setColor(bike, color = 'red', size = 20, hasBreaks = true) {
+    bike.color = color;
+    bike.size = size;
+    bike.hasBreaks = hasBreaks;
+}
+
+setColor(myBike, 'red', 28); 
+
+console.log(myBike);
+
+
+let colorsArr = ['red', 'green', 'blue'];
+
+colorsArr.forEach(function(color) {
+    console.log(color);
+});
