@@ -51,3 +51,38 @@ console.log(me.hair);
 
 me.classyGreeting(you);
 you.classyGreeting(me);
+
+
+class Hobbit extends Character {
+
+  constructor(name, age, eyes, hair, loveCats , loveDogs, pet, ...skills) {
+    super(name, age, eyes, hair, loveCats , loveDogs); //! always call the super first!
+    this.skills = skills;
+    this.superAttack = 'Fireball';
+    this.health = 3000;
+    this.damage = 500;
+    this.pet = pet;
+  }
+
+  steal() {
+    console.log('lets get away!');
+  }
+
+  great(otherCharacter) {
+    console.log('HELLO ' + otherCharacter + '!');
+  }
+  
+  smite() {
+    super.smite(); // calling the smite method from the parent class or super class
+    this.steal(); // calling the steal method from the Hobbit class
+  }
+}
+
+const frodo = new Hobbit('Frodo', 30, 'brown', 'black', true, true, 'Fox', "thievery", "speed", "willpower");
+console.log(frodo.great('Anna'));
+
+
+console.log(frodo.great('Alex'));
+console.log(frodo instanceof Character);
+frodo.smite();
+console.log(frodo);
