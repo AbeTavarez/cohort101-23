@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+}
+
+nav {
+    display: flex;
+    height: 50px;
+    background-color:  #a2cbb6;
+    flex-direction: row; /* default */
+    justify-content: flex-start; /* default */
+    
+}
+
+nav > div {
+    font-size: 20px;
+    margin: 10px;
+    color: #f3dba8;
+}
+
+nav > div:last-child {
+    margin-left: auto;
+}
+.box {
+    width: 50px;
+    height: 50px;
+    background-color: #BADA55;
+    margin: 10px;
+    font-size: 20px;
+    /* centering the text inside of the .box div  */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background-color: royalblue;
+    height: 100vh;
+
+    display: flex;
+
+    /* x-axis main  */
+    justify-content: flex-end;
+    justify-content: flex-start;
+    justify-content: center;
+    justify-content: space-around;
+    justify-content: space-between;
+    justify-content: space-evenly;
+
+    /* y-axis cross  */
+    align-items: flex-start;
+    align-items: flex-end;
+    align-items: flex-start;
+    align-items: center;
+
+    /* changing the main axis (flex-direction)  */
+
+    /* y-axis main  */
+    flex-direction: row-reverse;
+    flex-direction: row;
+    flex-direction: column;
+    flex-direction: column-reverse;
+    flex-direction: column;
+    flex-direction: row;
+
+    /* x-axis cross  */
+    align-items: flex-start;
+    align-items: flex-end;
+    align-items: center;
+
+    /* let items wrap to another row or column  */
+    flex-wrap: wrap;
+}
+
+.box:nth-child(1){
+    background-color: hotpink;
+    /* align-self: flex-start; */
+}
+
+.box:nth-child(5){
+    background-color: rebeccapurple;
+    /* align-self: flex-end; */
+}
+
+.box:nth-child(8){
+    background-color: peachpuff;
+    /* align-self: center; */
+    /* align-self: flex-start; */
+}
