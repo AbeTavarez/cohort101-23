@@ -1,0 +1,12 @@
+.container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+.sec1 {
+    background-color: rebeccapurple;
+}
+
+.sec2 {
+    background-color: royalblue;
+}
