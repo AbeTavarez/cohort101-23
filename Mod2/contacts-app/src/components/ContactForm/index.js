@@ -1,7 +1,10 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useContext } from "react";
+import { ContactsContext } from "../../context/contactsContext";
 
-function ContactForm(props) {
-  const { addNewContact } = props;
+function ContactForm() {
+  //* using the Contacts Context
+  const contactsCtx = useContext(ContactsContext);
+  const { dispatch } = contactsCtx;
 
   const [formData, setFormData] = useState({
     name: "",
@@ -9,21 +12,16 @@ function ContactForm(props) {
     phone: "",
   });
 
-  // const nameRef = useRef("");
-  // const emailRef = useRef("");
-  // const phoneRef = useRef("");
-
   const handleSubmit = (e) => {
     e.preventDefault(); // stop browser from refreshing
-    // const newContact = {
-    //   name: nameRef.current.value,
-    //   email: emailRef.current.value,
-    //   phone: phoneRef.current.value,
-    // };
 
-    // addNewContact(newContact);
-    addNewContact(formData);
+    // create the new contact object
+    const newContact = {...formData, id: new Date()};
 
+    // send out a new action with the newContact data
+    dispatch({type: 'add_contact', payload: newContact});
+
+    // clear the form
     setFormData({
       name: "",
       email: "",
@@ -52,7 +50,6 @@ function ContactForm(props) {
             name="name"
           />
 
-          {/* <input type="text" ref={nameRef}/> */}
         </div>
 
         <div>
@@ -63,8 +60,6 @@ function ContactForm(props) {
             onChange={handleChange}
             name="email"
           />
-
-          {/* <input type="text" ref={emailRef}/> */}
         </div>
 
         <div>
@@ -75,8 +70,6 @@ function ContactForm(props) {
             onChange={handleChange}
             name="phone"
           />
-
-          {/* <input type="text" ref={phoneRef}/> */}
         </div>
 
         <button>Create</button>

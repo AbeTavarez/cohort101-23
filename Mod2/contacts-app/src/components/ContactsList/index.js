@@ -1,20 +1,11 @@
-// import { useState, useEffect } from "react";
+import { useContext } from "react";
+import { ContactsContext } from "../../context/contactsContext";
 import ContactItem from "../ContactItem";
 
-function ContactsList(props) {
-  const {contacts} = props
-  // //* State ====
-  // const [contacts, setContacts] = useState(null);
-
-  //* fetch data from api when component mounts
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const res = await fetch("https://jsonplaceholder.typicode.com/users");
-  //     const data = await res.json();
-  //     setContacts(data);
-  //   };
-  //   fetchData();
-  // }, []);
+function ContactsList() {
+  //* UseContext
+  const contactsCtx = useContext(ContactsContext);
+  const { contacts } = contactsCtx;
 
   return (
     <div>
