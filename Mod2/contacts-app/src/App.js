@@ -8,6 +8,7 @@ import contactsReducer from "./reducer/contactsReducer";
 // contacts: global state
 // dispatch: function that will send a 'action' object to the reducer function
 
+
 function App() {
   //* State ====
   const [contacts, dispatch] = useReducer(contactsReducer, null);
