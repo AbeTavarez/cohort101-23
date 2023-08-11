@@ -1,8 +1,16 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import PostItem from "./PostItem";
+
+import { useEffect } from "react";
+import {fetchPosts} from '../redux/slices/postsSlice';
 
 export default function PostsList() {
   const posts = useSelector((state) => state.posts);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchPosts());
+  }, [dispatch]);
 
   console.log(posts);
   return (

@@ -6,9 +6,10 @@ export default function PostPage() {
 
   // gets the posts in state and finds the post with the id from the params
   const post = useSelector((state) =>
-    state.posts.find((post) => post.id === id)
+    state.posts.find((post) => post.id == id)
   );
 
+    console.log('POST', post);
 
   return (
     <div>
