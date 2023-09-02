@@ -17,7 +17,7 @@ app.use(express.json());
 // * Routes
 
 /**
- * Root
+ * * Root
  */
 app.get("/", (req, res) => {
   res.send("working!");

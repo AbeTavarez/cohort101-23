@@ -16,7 +16,7 @@ function Index(props) {
           return (
             <li key={fruit._id}>
               The {" "}
-              <a href={`/fruits/${fruit._id}`}>{fruit.name}</a>
+              <a href={`/fruits/${fruit._id}`} style={{color: `${fruit.readyToEat ? 'green' : 'red'}` }}>{fruit.name}</a>
               {" "}is {fruit.color}
               <br />
               {fruit.readyToEat
