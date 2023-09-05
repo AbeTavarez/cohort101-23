@@ -3,16 +3,21 @@ require("dotenv").config();
 const connectDB = require("./utils/connectDB");
 const Tweet = require("./models/Tweet");
 const manyTweets = require("./models/manytweets");
+const jsxEngine = require('jsx-view-engine');
+const methodOverride = require('method-override');
 
 //* Variables
 const app = express();
 const PORT = 3000;
 
 //* App Config
+app.set('view engine', 'jsx');
+app.engine('jsx', jsxEngine());
 
 //* Middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(methodOverride('_method'));
 
 // * Routes
 
@@ -23,7 +28,7 @@ app.get("/", (req, res) => {
   res.send("working!");
 });
 
-//* ========== View Routes
+//* ========== View Routes ==================== //
 
 /**
  * * Index
@@ -31,11 +36,37 @@ app.get("/", (req, res) => {
 app.get("/tweets", async (req, res) => {
   try {
     const tweets = await Tweet.find({});
-    res.send(tweets);
+    res.render('Index', {tweets});
   } catch (e) {
     console.log(e);
   }
 });
+
+
+/**
+ * * New
+ */
+app.get('/tweets/new', (req, res) => {
+  res.render('New');
+});
+
+/**
+ * * Edit 
+ */
+app.get('/tweets/:id/edit', async (req, res) => {
+  const {id} = req.params;
+  try {
+    // find the tweet
+    const tweet = await Tweet.findById(id);
+    // return edit template with the tweet data
+    res.render('Edit', {tweet});
+    
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+
 
 /**
  * * Show
@@ -44,32 +75,39 @@ app.get("/tweets/:id", async (req, res) => {
   const { id } = req.params;
   try {
     const tweet = await Tweet.findById(id);
-    res.send(tweet);
+    res.render('Show', {tweet});
   } catch (e) {
     console.log(e);
   }
 });
 
-//* ======== API Routes
+
+
+//* ======== API Routes ========================= //
 
 /**
- * Create POST
+ * * Create POST
  */
-app.post("/tweets", async (req, res) => {
+app.post("/api/tweets", async (req, res) => {
   const createdTweet = await Tweet.create(req.body);
-  res.send(createdTweet);
+  res.redirect('/tweets');
 });
 
 /**
  * * Update
  */
-app.put("/tweets/:id", async (req, res) => {
+app.put("/api/tweets/:id", async (req, res) => {
   const { id } = req.params;
+  if (req.body.sponsored === 'on') {
+    req.body.sponsored = true;
+  } else {
+    req.body.sponsored = false;
+  }
   try {
     const updatedTweet = await Tweet.findByIdAndUpdate(id, req.body, {
       new: true,
     });
-    res.send(updatedTweet);
+    res.redirect(`/tweets/${id}`);
   } catch (e) {
     console.log(e);
   }
@@ -78,11 +116,11 @@ app.put("/tweets/:id", async (req, res) => {
 /**
  * * Delete
  */
-app.delete("/tweets/:id", async (req, res) => {
+app.delete("/api/tweets/:id", async (req, res) => {
   const { id } = req.params;
   try {
     const deletedTweet = await Tweet.findByIdAndDelete(id);
-    res.send(deletedTweet);
+    res.redirect('/tweets');
   } catch (e) {
     console.log(e);
   }
@@ -92,7 +130,7 @@ app.delete("/tweets/:id", async (req, res) => {
 /**
  * * Add Comment
  */
-app.put('/tweets/add-comment/:id', async (req, res) => {
+app.put('/api/tweets/add-comment/:id', async (req, res) => {
     const {id} = req.params;
     const tweet = await Tweet.findById(id);
     console.log(tweet);
