@@ -15,14 +15,22 @@ function Index({ tweets }) {
               <a href={`/tweets/${tweet._id}`}>{tweet.title}</a>
               <p>{tweet.body}</p>
               <p>{tweet.author}</p>
-              <span>Likes: {tweet.likes}</span>
+
+              {/* LIKE BUTTON  */}
+              <div>
+                <a href={`/api/tweets/add-like/${tweet._id}`}>Like</a>
+                <br />
+                <span>Likes: {tweet.likes}</span>
+              </div>
 
               <br />
               <span>{tweet.sponsored ? 'Sponsored': ''}</span>
 
+              {/* EDIT BUTTON  */}
               <br />
               <a href={`/tweets/${tweet._id}/edit`}>Edit Tweet</a>
 
+              {/* DELETE FORM/BUTTON  */}
               <form method="POST" action={`/api/tweets/${tweet._id}?_method=DELETE`}>
                 <input type="submit" value="Delete"/>
               </form>

@@ -136,7 +136,7 @@ app.put('/api/tweets/add-comment/:id', async (req, res) => {
     console.log(tweet);
     tweet.comments.push(req.body);
     const updatedTweet = await Tweet.findByIdAndUpdate(id, tweet, {new: true});
-    res.send(updatedTweet);
+    res.redirect(`/tweets/${id}`);
 });
 
 
@@ -151,7 +151,7 @@ app.get('/api/tweets/add-like/:id', async (req, res) => {
     tweetToUpdate.likes++;
     // update the tweet with the new data
     const updatedTweet = await Tweet.findByIdAndUpdate(id, tweetToUpdate, {new: true});
-    res.send(updatedTweet);
+    res.redirect('/tweets');
 });
 
 /**
