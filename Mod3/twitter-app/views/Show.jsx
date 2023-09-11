@@ -1,9 +1,10 @@
 const React = require("react");
+const DefaultLayout = require("./Layout/Default");
 
 function Show({ tweet }) {
     
   return (
-    <div>
+    <DefaultLayout>
       <div>{tweet.title}</div>
       <div>{tweet.author}</div>
       <div>{tweet.body}</div>
@@ -40,7 +41,7 @@ function Show({ tweet }) {
           <input type="submit" value="Add Comment" />
         </form>
       </div>
-    </div>
+    </DefaultLayout>
   );
 }
 

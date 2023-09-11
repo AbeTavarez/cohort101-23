@@ -5,7 +5,8 @@ function DefaultLayout({ title, children }) {
     <html>
       <head>
         <title>{title}</title>
-        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="/css/app.css"></link>
+        {/* <script src="https://cdn.tailwindcss.com"></script> */}
       </head>
 
       <body className='flex flex-col items-center'>
