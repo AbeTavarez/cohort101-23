@@ -1,4 +1,8 @@
 import { useState } from "react";
+import {signUp} from '../../utilities/users-service';
+
+
+// SignUpForm.jsx <-> users-service.js <-> users-api.js <-> routes/users.js <--> controller/users.js
 
 function SignUpForm() {
   const [formData, setFormData] = useState({
@@ -19,9 +23,29 @@ function SignUpForm() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    try {
+      console.log(formData);
+
+      // copy the form data
+      const userFormData = {...formData}
+      // delete the extra properties
+      delete userFormData.confirm
+      delete userFormData.error
+
+      // calling user service signUp function
+      const user = await signUp(userFormData);
+      console.log('USER', user);
+      
+
+    } catch (error) {
+      console.log(error);
+      setFormData({
+        ...formData,
+        error: 'Sign Up Failed - Try Again'
+      });
+    }
   };
 
   return (

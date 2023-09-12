@@ -4,10 +4,12 @@ import NewOrderPage from "./pages/NewOrderPage";
 import OrderHistoryPage from "./pages/OrderHistoryPage";
 import AuthPage from "./pages/AuthPage";
 import NavBar from "./components/NavBar";
+import { getUser } from "./utilities/users-service";
 import "./App.css";
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(getUser());
+  console.log(user);
 
   return (
     <main className="App">
