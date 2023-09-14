@@ -4,7 +4,7 @@ import {signUp} from '../../utilities/users-service';
 
 // SignUpForm.jsx <-> users-service.js <-> users-api.js <-> routes/users.js <--> controller/users.js
 
-function SignUpForm() {
+function SignUpForm({setUser}) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -37,6 +37,7 @@ function SignUpForm() {
       // calling user service signUp function
       const user = await signUp(userFormData);
       console.log('USER', user);
+      setUser(user);
       
 
     } catch (error) {

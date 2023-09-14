@@ -4,8 +4,25 @@ export async function signUp(userData) {
   // calling the user-api signUp function
   const token = await usersApi.signUp(userData);
   localStorage.setItem("SEIToken", token);
-  return token;
+  return getUser();
 }
+
+
+export async function login(credentials) {
+  const token = await usersApi.login(credentials);
+  localStorage.setItem("SEIToken", token);
+  return getUser();
+}
+
+export async function logOut() {
+  localStorage.removeItem('SEIToken');
+}
+
+export async function checkToken() {
+  const dateStr = await usersApi.checkToken();
+  return new Date(dateStr);
+}
+
 
 export function getToken() {
   // getItem returns null if there's no string
